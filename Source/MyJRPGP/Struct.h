@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Enum.h"
+#include "BattleCharacterBase.h"
 
 struct CharacterInformation
 {
@@ -9,7 +10,7 @@ struct CharacterInformation
 	FText CharacterDisplayName;
 	int CurrentLevel;
 	int AvailableActionPoints;
-	//CharacterBattleBase CharacterActorClass;
+	ABattleCharacterBase CharacterActorClass;
 	UTexture2D CharacterIcon;
 	float CurrentHP;
 	float CurrentMP;
@@ -33,7 +34,7 @@ struct EnemyInformation
 	int Level;
 	int ExperienceReward;
 	int GoldReward;
-	//CharacterBattleBase EnemyActorClass;
+	ABattleCharacterBase CharacterActorClass;
 	StatType EnemyStats;
 	TMap<float, FName> PossibleLoot;
 };
