@@ -1,10 +1,14 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
 #pragma once
 
 #include "CoreMinimal.h"
+#include "CustomEnum.generated.h"
 
-enum class ActionType
+UENUM()
+enum class EActionType : uint8
 {
-	None,
+	None,		
 	Attack,
 	Defend,
 	Items,
@@ -14,7 +18,8 @@ enum class ActionType
 	Deathblow
 };
 
-enum class CameraPathType
+UENUM()
+enum class ECameraPathType : uint8
 {
 	Loop,
 	Spiral,
@@ -22,7 +27,8 @@ enum class CameraPathType
 	Manual
 };
 
-enum class CombatStyle
+UENUM()
+enum class ECombatStyle : uint8
 {
 	None,
 	Mage,
@@ -31,13 +37,15 @@ enum class CombatStyle
 	Warrior
 };
 
-enum class FormationType
+UENUM()
+enum class EFormationType : uint8
 {
 	Frontline,
 	Backline
 };
 
-enum class ItemRarity
+UENUM()
+enum class EItemRarity : uint8
 {
 	None,
 	Common,
@@ -48,7 +56,8 @@ enum class ItemRarity
 	Legendary
 };
 
-enum class ItemSubType
+UENUM()
+enum class EItemSubType : uint8
 {
 	None,
 	Sword,
@@ -64,7 +73,8 @@ enum class ItemSubType
 	Medicine
 };
 
-enum class ItemType
+UENUM()
+enum class EItemType : uint8
 {
 	None,
 	Weapon,
@@ -76,7 +86,8 @@ enum class ItemType
 	Potion
 };
 
-enum class StatType
+UENUM()
+enum class ECharacterStatType : uint8
 {
 	None,
 	HP,
@@ -89,7 +100,8 @@ enum class StatType
 	Evasion
 };
 
-enum class TargetingType
+UENUM()
+enum class ETargetingType : uint8
 {
 	OnlySelf,
 	SingleEnemy,
@@ -100,11 +112,19 @@ enum class TargetingType
 	AllAllies
 };
 
-enum class YesNoQuestions
+UENUM()
+enum class EYesNoQuestions : uint8
 {
 	QuitToMainMenu,
 	OverwriteGameSave,
 	CreateNewGameSave,
 	LoadGame,
 	DeleteGameSave
+};
+
+class MYJRPGP_API CustomEnum
+{
+public:
+	CustomEnum();
+	~CustomEnum();
 };
