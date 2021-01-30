@@ -16,6 +16,21 @@ class MYJRPGP_API UJRPGGameInstance : public UGameInstance
 	GENERATED_BODY()
 
 public:
+	void ClearCharactersCollection();
+	void ClearCurrentParty();
+	void ClearInventory();
+
+	void SetTimePlayed(float InTime);
+
+public:
 	UPROPERTY()
-	TMap<FName, FCharacterInformation> CharactersCollection;
+		TMap<FName, FCharacterInformation> CharactersCollection;
+
+	UPROPERTY()
+		TArray<FPartySlot> CurrentParty;
+
+	UPROPERTY()
+		TArray<FItemDynamicData> Inventory;
+
+	float TimePlayed;
 };

@@ -2,25 +2,59 @@
 
 
 #include "SaveManager.h"
-#include <GameFramework/Actor.h>
+#include "JRPGGameInstance.h"
+#include "CharacterManager.h"
+#include "MainMenuController.h"
+#include <Engine/DataTable.h>
+#include "CustomStruct.h"
 
 // Sets default values for this component's properties
-USaveManager::USaveManager()
+USaveManager::USaveManager() : CharacterDataTable(nullptr)
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+	static ConstructorHelpers::FObjectFinder<UDataTable> FindDataTable(TEXT("/Game/MyJRPG/DataTable/CharacterDataTable"));
+	if (FindDataTable.Succeeded())
+	{
+		CharacterDataTable = FindDataTable.Object;
+	}
 }
 
+void USaveManager::StartNewGame()
+{
+	UJRPGGameInstance* JrpgGameInstance = GetWorld()->GetGameInstance<UJRPGGameInstance>();
+	if (JrpgGameInstance)
+	{
+		JrpgGameInstance->ClearCharactersCollection();
+		JrpgGameInstance->ClearCurrentParty();
+		JrpgGameInstance->ClearInventory();
+
+		JrpgGameInstance->SetTimePlayed(0.0f);
+
+		AActor* Owner = GetOwner();
+		AMainMenuController* MainMenuController = Cast<AMainMenuController>(Owner);
+		UCharacterManager* CharacterManager = nullptr;
+		CharacterManager = MainMenuController->GetCharacterManager();
+		if (IsValid(CharacterManager))
+		{
+			if (CharacterDataTable)
+			{
+				TArray<FName> CharacterNames = { "Mark" };
+				for (FName CharacterName : CharacterNames)
+				{
+					FCharacterInformation* CharacterInfomation = CharacterDataTable->FindRow<FCharacterInformation>(CharacterName, "");
+				}
+			}
+		}
+	}
+}
 
 // Called when the game starts
 void USaveManager::BeginPlay()
 {
 	Super::BeginPlay();
-
-	//GetGameInstance();
 }
 
 
