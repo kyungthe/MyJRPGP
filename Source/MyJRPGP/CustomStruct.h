@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "CustomEnum.h"
+#include <Engine/DataTable.h>
 #include "CustomStruct.generated.h"
 
 /**
@@ -16,105 +17,105 @@ public:
 	~CustomStruct();
 };
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FNameArray
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY()
-	FName ActionName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<FName> ActionName;
 };
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FItemStaticData
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName ItemHardcodedName;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText ItemDisplayName;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EItemType ItemType;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EItemSubType ItemSubtype;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EItemRarity ItemRarity;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanBeUsedInBattle;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool CanBeUsedInInventory;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaxStackAmount;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int BuyValue;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int SellValue;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText ItemDescription;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<ECharacterStatType, float> ItemStats;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UTexture2D* ItemIcon;
 };
 
-USTRUCT()
-struct FCharacterInformation
+USTRUCT(BlueprintType)
+struct FCharacterInformation : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName CharacterHardcodedName;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText CharacterDisplayName;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int CurrentLevel;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int AvailableActionPoints;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class ABattleCharacterBase* CharacterActorClass;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UTexture2D* CharacterIcon;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float CurrentHP;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float CurrentMP;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<ECharacterStatType, float> CharacterStats;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<ECharacterStatType, float> StatsPerLevel;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<EItemType, FItemStaticData> CharacterEquipment;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSet<EItemSubType> AllowedEquipmentSubtypes;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<FName, int> CharacterActions;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<int, FNameArray> ActionsPerLevel;
 };
 
@@ -225,4 +226,3 @@ struct FAction
 	UPROPERTY()
 	float PerLevelCostHP;
 };
-

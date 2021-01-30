@@ -3,11 +3,18 @@
 
 #include "MainMenuController.h"
 #include <Blueprint/UserWidget.h>
+#include "SaveManager.h"
+#include "CharacterManager.h"
+#include "MainMenuWidget.h"
 
-AMainMenuController::AMainMenuController()
+AMainMenuController::AMainMenuController() : MainMenuWidgetClass(nullptr), SaveManager(nullptr), CharacterManager(nullptr)
 {
-	static ConstructorHelpers::FClassFinder<UUserWidget> FindWidget(TEXT("/Game/MyJRPG/Widget/MainMenu"));
-	MainMenuWidgetClass = FindWidget.Class;
+	static ConstructorHelpers::FClassFinder<UMainMenuWidget> FindWidget(TEXT("/Game/MyJRPG/Widget/MainMenuBP"));
+	if(FindWidget.Succeeded())
+		MainMenuWidgetClass = FindWidget.Class;
+
+	SaveManager = CreateDefaultSubobject<USaveManager>("SaveManager");
+	CharacterManager = CreateDefaultSubobject<UCharacterManager>("CharacterManager");
 }
 
 void AMainMenuController::BeginPlay()
@@ -15,7 +22,22 @@ void AMainMenuController::BeginPlay()
 	Super::BeginPlay();
 
 	SetInputMode(FInputModeGameAndUI());
-	UUserWidget* MainMenuWidget = CreateWidget(GetWorld(), MainMenuWidgetClass);
-	if (MainMenuWidget)
-		MainMenuWidget->AddToViewport();
+
+	if (MainMenuWidgetClass)
+	{
+		UUserWidget* CreatedWidget = CreateWidget(GetWorld(), MainMenuWidgetClass);
+		UMainMenuWidget* MainMenuWidget = Cast<UMainMenuWidget>(CreatedWidget);
+		if (MainMenuWidget)
+		{
+			MainMenuWidget->AddToViewport();
+
+			if (SaveManager)
+				MainMenuWidget->SetSaveManager(SaveManager);
+		}
+	}
+}
+
+UCharacterManager* AMainMenuController::GetCharacterManager() const
+{
+	return CharacterManager;
 }

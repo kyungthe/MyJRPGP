@@ -3,3 +3,22 @@
 
 #include "JRPGGameInstance.h"
 
+void UJRPGGameInstance::ClearCharactersCollection()
+{
+	CharactersCollection.Reset();
+}
+
+void UJRPGGameInstance::ClearCurrentParty()
+{
+	CurrentParty.Reset();
+}
+
+void UJRPGGameInstance::ClearInventory()
+{
+	Inventory.Reset();
+}
+
+void UJRPGGameInstance::SetTimePlayed(float InTime)
+{
+	TimePlayed = InTime;
+}

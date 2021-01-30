@@ -7,14 +7,19 @@
 #include "SaveManager.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MYJRPGP_API USaveManager : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
 	USaveManager();
+
+	UFUNCTION(BlueprintCallable)
+	void StartNewGame();
+
+public:
+	class UDataTable* CharacterDataTable;
 
 protected:
 	// Called when the game starts
