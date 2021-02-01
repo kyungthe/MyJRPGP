@@ -45,7 +45,10 @@ void UCharacterManager::AddNewCharacterToCollection(FCharacterInformation& Chara
 				{
 					FItemStaticData* FindItemStaticData = ItemDataTable->FindRow<FItemStaticData>(ItemStaticData.ItemHardcodedName, "");
 					//IncreaseCharacterStats(CharacterInformation.CharacterHardcodedName, FindItemStaticData->ItemStats);
-					ItemStaticData = *FindItemStaticData;
+					if (FindItemStaticData)
+					{
+						ItemStaticData = *FindItemStaticData;
+					}
 				}
 			}
 
