@@ -1,7 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "CharacterManager.h"
+#include "CustomStruct.h"
+#include "JRPGGameInstance.h"
 
 // Sets default values for this component's properties
 UCharacterManager::UCharacterManager()
@@ -19,8 +21,12 @@ void UCharacterManager::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	JrpgGameInstance = GetWorld()->GetGameInstance<UJRPGGameInstance>();	
+}
+
+void UCharacterManager::AddNewCharacterToCollection(FCharacterInformation& CharacterInformation)
+{
+
 }
 
 
