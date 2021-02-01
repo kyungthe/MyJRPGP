@@ -44,6 +44,10 @@ void USaveManager::StartNewGame()
 				for (FName CharacterName : CharacterNames)
 				{
 					FCharacterInformation* CharacterInfomation = CharacterDataTable->FindRow<FCharacterInformation>(CharacterName, "");
+					if (CharacterInfomation)
+					{
+						CharacterManager->AddNewCharacterToCollection(*CharacterInfomation);
+					}
 				}
 			}
 		}

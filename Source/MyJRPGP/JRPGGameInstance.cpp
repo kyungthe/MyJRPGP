@@ -13,7 +13,7 @@ int32 UJRPGGameInstance::GetCharactersCollectionLength() const
 	return CharactersCollection.Num();
 }
 
-void UJRPGGameInstance::AddCharacterInformation(FCharacterInformation CharacterInformation)
+void UJRPGGameInstance::AddCharacterInformation(FCharacterInformation& CharacterInformation)
 {
 	FName CharacterName = CharacterInformation.CharacterHardcodedName;
 	

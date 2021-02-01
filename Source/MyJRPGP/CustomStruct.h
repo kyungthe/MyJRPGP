@@ -27,7 +27,7 @@ struct FNameArray
 };
 
 USTRUCT(BlueprintType)
-struct FItemStaticData
+struct FItemStaticData : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 

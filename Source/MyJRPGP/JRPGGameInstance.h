@@ -18,7 +18,7 @@ class MYJRPGP_API UJRPGGameInstance : public UGameInstance
 public:
 	void ClearCharactersCollection();
 	int32 GetCharactersCollectionLength() const;
-	void AddCharacterInformation(struct FCharacterInformation);
+	void AddCharacterInformation(struct FCharacterInformation&);
 
 	void ClearCurrentParty();
 	void ClearInventory();

@@ -18,9 +18,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void StartNewGame();
 
-public:
-	class UDataTable* CharacterDataTable;
-
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -29,5 +26,6 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+public:
+	class UDataTable* CharacterDataTable;
 };

@@ -28,4 +28,8 @@ public:
 public:
 	UPROPERTY()
 	class UJRPGGameInstance* JrpgGameInstance;
+
+	int32 MaxCharactersAmountInCollection;
+
+	class UDataTable* ItemDataTable;
 };
