@@ -7,7 +7,8 @@
 #include "CharacterManager.h"
 #include "MainMenuWidget.h"
 
-AMainMenuController::AMainMenuController() : MainMenuWidgetClass(nullptr), SaveManager(nullptr), CharacterManager(nullptr)
+AMainMenuController::AMainMenuController() : 
+	MainMenuWidgetClass(nullptr), SaveManager(nullptr), CharacterManager(nullptr)
 {
 	static ConstructorHelpers::FClassFinder<UMainMenuWidget> FindWidget(TEXT("/Game/MyJRPG/Widget/MainMenuBP"));
 	if(FindWidget.Succeeded())

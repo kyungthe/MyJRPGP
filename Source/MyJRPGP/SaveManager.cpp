@@ -35,8 +35,7 @@ void USaveManager::StartNewGame()
 
 		AActor* Owner = GetOwner();
 		AMainMenuController* MainMenuController = Cast<AMainMenuController>(Owner);
-		UCharacterManager* CharacterManager = nullptr;
-		CharacterManager = MainMenuController->GetCharacterManager();
+		UCharacterManager* CharacterManager = MainMenuController->GetCharacterManager();
 		if (IsValid(CharacterManager))
 		{
 			if (CharacterDataTable)
