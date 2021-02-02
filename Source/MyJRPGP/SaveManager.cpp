@@ -51,6 +51,8 @@ void USaveManager::StartNewGame()
 				}
 			}
 		}
+
+		JrpgGameInstance->SetGold(50);
 	}
 }
 
