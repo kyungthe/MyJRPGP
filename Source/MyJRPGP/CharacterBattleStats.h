@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "CustomEnum.h"
 #include "CharacterBattleStats.generated.h"
-
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MYJRPGP_API UCharacterBattleStats : public UActorComponent
@@ -24,5 +24,17 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+public:
+	UPROPERTY()
+	FName CharacterHardcodedName;
+
+	UPROPERTY()
+	FText CharacterDisplayName;
+
+	UPROPERTY()
+	TMap<ECharacterStatType, float> CharacterStats;
+
+	float CurrentHP;
+
+	float CurrentMP;
 };
