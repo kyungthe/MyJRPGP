@@ -25,6 +25,8 @@ public:
 
 	void SetTimePlayed(float InTime);
 
+	void SetGold(int32 InGold);
+
 public:
 	UPROPERTY()
 		TMap<FName, FCharacterInformation> CharactersCollection;
