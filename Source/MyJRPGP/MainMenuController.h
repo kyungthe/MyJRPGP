@@ -19,8 +19,6 @@ public:
 
 	void BeginPlay() override;
 
-	class UCharacterManager* GetCharacterManager() const;
-
 public:
 	UPROPERTY()
 	class TSubclassOf<class UMainMenuWidget> MainMenuWidgetClass;

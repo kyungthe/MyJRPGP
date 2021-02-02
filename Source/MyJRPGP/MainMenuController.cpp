@@ -37,8 +37,3 @@ void AMainMenuController::BeginPlay()
 		}
 	}
 }
-
-UCharacterManager* AMainMenuController::GetCharacterManager() const
-{
-	return CharacterManager;
-}
