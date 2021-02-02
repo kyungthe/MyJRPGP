@@ -14,7 +14,7 @@ UCharacterManager::UCharacterManager() : ItemDataTable(nullptr)
 
 	MaxCharactersAmountInCollection = 15;
 
-	static ConstructorHelpers::FObjectFinder<UDataTable> FindDataTable(TEXT("/Game/MyJRPG/DataTable/ItemDataTable"));
+	ConstructorHelpers::FObjectFinder<UDataTable> FindDataTable(TEXT("/Game/MyJRPG/DataTable/ItemDataTable"));
 	if (FindDataTable.Succeeded())
 	{
 		ItemDataTable = FindDataTable.Object;

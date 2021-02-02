@@ -15,7 +15,7 @@ USaveManager::USaveManager() : CharacterDataTable(nullptr)
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	static ConstructorHelpers::FObjectFinder<UDataTable> FindDataTable(TEXT("/Game/MyJRPG/DataTable/CharacterDataTable"));
+	ConstructorHelpers::FObjectFinder<UDataTable> FindDataTable(TEXT("/Game/MyJRPG/DataTable/CharacterDataTable"));
 	if (FindDataTable.Succeeded())
 	{
 		CharacterDataTable = FindDataTable.Object;
