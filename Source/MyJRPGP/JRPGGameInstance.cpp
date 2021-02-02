@@ -6,6 +6,7 @@
 void UJRPGGameInstance::ClearCharactersCollection()
 {
 	CharactersCollection.Reset();
+	Gold = 0;
 }
 
 int32 UJRPGGameInstance::GetCharactersCollectionLength() const
@@ -33,4 +34,9 @@ void UJRPGGameInstance::ClearInventory()
 void UJRPGGameInstance::SetTimePlayed(float InTime)
 {
 	TimePlayed = InTime;
+}
+
+void UJRPGGameInstance::SetGold(int32 InGold)
+{
+	Gold = InGold;
 }

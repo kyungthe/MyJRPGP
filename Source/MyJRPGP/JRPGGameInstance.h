@@ -36,4 +36,6 @@ public:
 		TArray<FItemDynamicData> Inventory;
 
 	float TimePlayed;
+
+	int32 Gold;
 };
