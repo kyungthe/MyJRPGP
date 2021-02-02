@@ -16,6 +16,8 @@ public:
 	// Sets default values for this component's properties
 	UBattleManager();
 
+	void SetCurrentHP(FName CharacterName, float HP);
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
