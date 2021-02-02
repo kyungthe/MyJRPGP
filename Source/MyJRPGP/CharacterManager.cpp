@@ -40,19 +40,34 @@ void UCharacterManager::AddNewCharacterToCollection(FCharacterInformation& Chara
 			TMap<EItemType, FItemStaticData>& CharacterEquipment = CharacterInformation.CharacterEquipment;
 			for (auto& Pair : CharacterEquipment)
 			{
-				FItemStaticData& ItemStaticData = Pair.Value;
+				FItemStaticData& CharacterItemStaticData = Pair.Value;
 				if (ItemDataTable)
 				{
-					FItemStaticData* FindItemStaticData = ItemDataTable->FindRow<FItemStaticData>(ItemStaticData.ItemHardcodedName, "");
-					//IncreaseCharacterStats(CharacterInformation.CharacterHardcodedName, FindItemStaticData->ItemStats);
+					FItemStaticData* FindItemStaticData = ItemDataTable->FindRow<FItemStaticData>(CharacterItemStaticData.ItemHardcodedName, "");
 					if (FindItemStaticData)
 					{
-						ItemStaticData = *FindItemStaticData;
+						IncreaseCharacterStats(CharacterInformation, FindItemStaticData->ItemStats);
+						CharacterItemStaticData = *FindItemStaticData;
 					}
 				}
 			}
 
 			JrpgGameInstance->AddCharacterInformation(CharacterInformation);
+		}
+	}
+}
+
+void UCharacterManager::IncreaseCharacterStats(FCharacterInformation& CharacterInformation, TMap<ECharacterStatType, float>& ItemStats)
+{
+	for (auto& Pair : ItemStats)
+	{
+		ECharacterStatType StatType = Pair.Key;
+		float StatValue = Pair.Value;
+		CharacterInformation.CharacterStats[StatType] += StatValue;
+
+		if (StatType == ECharacterStatType::HP)
+		{
+
 		}
 	}
 }

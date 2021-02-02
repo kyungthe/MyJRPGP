@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "CharacterManager.generated.h"
 
+enum class ECharacterStatType : uint8;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class MYJRPGP_API UCharacterManager : public UActorComponent
@@ -16,6 +17,8 @@ public:
 	UCharacterManager();
 
 	void AddNewCharacterToCollection(struct FCharacterInformation& CharacterInformation);
+
+	void IncreaseCharacterStats(struct FCharacterInformation&, TMap<ECharacterStatType, float>& ItemStats);
 
 protected:
 	// Called when the game starts
