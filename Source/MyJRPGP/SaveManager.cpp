@@ -34,8 +34,7 @@ void USaveManager::StartNewGame()
 		JrpgGameInstance->SetTimePlayed(0.0f);
 
 		AActor* Owner = GetOwner();
-		AMainMenuController* MainMenuController = Cast<AMainMenuController>(Owner);
-		UActorComponent* ActorComponent = MainMenuController->GetComponentByClass(UCharacterManager::StaticClass());
+		UActorComponent* ActorComponent = Owner->GetComponentByClass(UCharacterManager::StaticClass());
 		UCharacterManager* CharacterManager = Cast<UCharacterManager>(ActorComponent);
 		if (IsValid(CharacterManager))
 		{
