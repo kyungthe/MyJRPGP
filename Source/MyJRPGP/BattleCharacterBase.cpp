@@ -2,6 +2,7 @@
 
 
 #include "BattleCharacterBase.h"
+#include "CharacterBattleStats.h"
 
 // Sets default values
 ABattleCharacterBase::ABattleCharacterBase()
@@ -9,6 +10,25 @@ ABattleCharacterBase::ABattleCharacterBase()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	CharacterStats = CreateDefaultSubobject<UCharacterBattleStats>("CharacterBattleStats");
+}
+
+void ABattleCharacterBase::SetCurrentHP(float HP)
+{
+	if (HP < 0.0f)
+		HP = 0.0f;
+
+	CharacterStats->CurrentHP = HP;
+}
+
+float ABattleCharacterBase::GetCurrentHP() const
+{
+	return CharacterStats->CurrentHP;
+}
+
+const FName ABattleCharacterBase::GetCharacterHardcodedName() const
+{
+	return CharacterStats->CharacterHardcodedName;
 }
 
 // Called when the game starts or when spawned

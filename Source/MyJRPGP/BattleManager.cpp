@@ -2,6 +2,7 @@
 
 
 #include "BattleManager.h"
+#include "BattleCharacterBase.h"
 
 // Sets default values for this component's properties
 UBattleManager::UBattleManager()
@@ -13,6 +14,29 @@ UBattleManager::UBattleManager()
 	// ...
 }
 
+void UBattleManager::SetPlayerCharacterCurrentHP(FName CharacterName, float HP)
+{
+	for (ABattleCharacterBase* Character : PlayerCharacters)
+	{
+		if (Character->GetCharacterHardcodedName() == CharacterName)
+		{
+			return Character->SetCurrentHP(HP);
+		}
+	}
+}
+
+float UBattleManager::GetPlayerCharacterCurrentHP(FName CharacterName) const
+{
+	for (ABattleCharacterBase* Character : PlayerCharacters)
+	{
+		if (Character->GetCharacterHardcodedName() == CharacterName)
+		{
+			return Character->GetCurrentHP();
+		}
+	}
+
+	return -1.0f;
+}
 
 // Called when the game starts
 void UBattleManager::BeginPlay()

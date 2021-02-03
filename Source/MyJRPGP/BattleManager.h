@@ -16,7 +16,8 @@ public:
 	// Sets default values for this component's properties
 	UBattleManager();
 
-	void SetCurrentHP(FName CharacterName, float HP);
+	void SetPlayerCharacterCurrentHP(FName CharacterName, float HP);
+	float GetPlayerCharacterCurrentHP(FName CharacterName) const;
 
 protected:
 	// Called when the game starts
