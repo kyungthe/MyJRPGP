@@ -4,6 +4,7 @@
 #include "CharacterManager.h"
 #include "CustomStruct.h"
 #include "JRPGGameInstance.h"
+#include "BattleManager.h"
 
 // Sets default values for this component's properties
 UCharacterManager::UCharacterManager() : ItemDataTable(nullptr)
@@ -67,7 +68,23 @@ void UCharacterManager::IncreaseCharacterStats(FCharacterInformation& CharacterI
 
 		if (StatType == ECharacterStatType::HP)
 		{
+			AActor* Owner = GetOwner();
+			UActorComponent* ActorComponent = Owner->GetComponentByClass(UCharacterManager::StaticClass());
+			UBattleManager* CharacterManager = Cast<UBattleManager>(ActorComponent);
 
+			float CurrentHP = CharacterManager->GetPlayerCharacterCurrentHP(CharacterInformation.CharacterHardcodedName);
+			CurrentHP += StatValue;
+			CharacterManager->SetPlayerCharacterCurrentHP(CharacterInformation.CharacterHardcodedName, CurrentHP);
+		}
+		else if (StatType == ECharacterStatType::MP)
+		{
+			AActor* Owner = GetOwner();
+			UActorComponent* ActorComponent = Owner->GetComponentByClass(UCharacterManager::StaticClass());
+			UBattleManager* CharacterManager = Cast<UBattleManager>(ActorComponent);
+
+			float CurrentMP = CharacterManager->GetPlayerCharacterCurrentMP(CharacterInformation.CharacterHardcodedName);
+			CurrentMP += StatValue;
+			CharacterManager->SetPlayerCharacterCurrentMP(CharacterInformation.CharacterHardcodedName, CurrentMP);
 		}
 	}
 }
