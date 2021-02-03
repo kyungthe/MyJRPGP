@@ -38,6 +38,30 @@ float UBattleManager::GetPlayerCharacterCurrentHP(FName CharacterName) const
 	return -1.0f;
 }
 
+void UBattleManager::SetPlayerCharacterCurrentMP(FName CharacterName, float MP)
+{
+	for (ABattleCharacterBase* Character : PlayerCharacters)
+	{
+		if (Character->GetCharacterHardcodedName() == CharacterName)
+		{
+			return Character->SetCurrentMP(MP);
+		}
+	}
+}
+
+float UBattleManager::GetPlayerCharacterCurrentMP(FName CharacterName) const
+{
+	for (ABattleCharacterBase* Character : PlayerCharacters)
+	{
+		if (Character->GetCharacterHardcodedName() == CharacterName)
+		{
+			return Character->GetCurrentMP();
+		}
+	}
+
+	return -1.0f;
+}
+
 // Called when the game starts
 void UBattleManager::BeginPlay()
 {

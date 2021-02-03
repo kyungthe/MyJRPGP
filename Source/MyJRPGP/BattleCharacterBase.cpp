@@ -26,6 +26,19 @@ float ABattleCharacterBase::GetCurrentHP() const
 	return CharacterStats->CurrentHP;
 }
 
+void ABattleCharacterBase::SetCurrentMP(float MP)
+{
+	if (MP < 0.0f)
+		MP = 0.0f;
+
+	CharacterStats->CurrentMP = MP;
+}
+
+float ABattleCharacterBase::GetCurrentMP() const
+{
+	return CharacterStats->CurrentMP;
+}
+
 const FName ABattleCharacterBase::GetCharacterHardcodedName() const
 {
 	return CharacterStats->CharacterHardcodedName;

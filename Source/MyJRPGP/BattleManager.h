@@ -19,6 +19,9 @@ public:
 	void SetPlayerCharacterCurrentHP(FName CharacterName, float HP);
 	float GetPlayerCharacterCurrentHP(FName CharacterName) const;
 
+	void SetPlayerCharacterCurrentMP(FName CharacterName, float MP);
+	float GetPlayerCharacterCurrentMP(FName CharacterName) const;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

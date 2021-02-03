@@ -18,6 +18,9 @@ public:
 	void SetCurrentHP(float HP);
 	float GetCurrentHP() const;
 
+	void SetCurrentMP(float MP);
+	float GetCurrentMP() const;
+
 	const FName GetCharacterHardcodedName() const;
 
 protected:
