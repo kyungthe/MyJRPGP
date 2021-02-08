@@ -9,17 +9,11 @@
 #include "CustomStruct.h"
 
 // Sets default values for this component's properties
-USaveManager::USaveManager() : CharacterDataTable(nullptr)
+USaveManager::USaveManager()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	ConstructorHelpers::FObjectFinder<UDataTable> FindDataTable(TEXT("/Game/MyJRPG/DataTable/CharacterDataTable"));
-	if (FindDataTable.Succeeded())
-	{
-		CharacterDataTable = FindDataTable.Object;
-	}
 }
 
 void USaveManager::StartNewGame()
@@ -38,6 +32,7 @@ void USaveManager::StartNewGame()
 		UCharacterManager* CharacterManager = Cast<UCharacterManager>(ActorComponent);
 		if (IsValid(CharacterManager))
 		{
+			UDataTable* CharacterDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/MyJRPG/DataTable/CharacterDataTable"), nullptr, LOAD_None, nullptr);
 			if (CharacterDataTable)
 			{
 				TArray<FName> CharacterNames = { "Mark" };
