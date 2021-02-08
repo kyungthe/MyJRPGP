@@ -64,16 +64,19 @@ void USaveManager::StartNewGame()
 			UDataTable* ItemDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/MyJRPG/DataTable/ItemDataTable"), nullptr, LOAD_None, nullptr);
 			FItemDynamicData ItemDynamicData;
 			FItemStaticData* pItemStaticData = ItemDataTable->FindRow<FItemStaticData>(ItemName, "");
-			ItemDynamicData.ItemStaticData = *pItemStaticData;
-			ItemDynamicData.StacksAmount = Amount;
+			if (pItemStaticData)
+			{
+				ItemDynamicData.ItemStaticData = *pItemStaticData;
+				ItemDynamicData.StacksAmount = Amount;
 
-			JrpgGameInstance->AddItemDynamicDataToInventory(ItemDynamicData);
+				JrpgGameInstance->AddItemDynamicDataToInventory(ItemDynamicData);
+			}
 		}
 
 		JrpgGameInstance->ClearInteractedObjects();
 		JrpgGameInstance->ClearBattledEnemies();
 
-		//UGameplayStatics::OpenLevel();
+		UGameplayStatics::OpenLevel(this, "Map_World1");
 	}
 }
 
