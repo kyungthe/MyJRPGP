@@ -7,6 +7,7 @@
 #include "MainMenuController.h"
 #include <Engine/DataTable.h>
 #include "CustomStruct.h"
+#include <Kismet/GameplayStatics.h>
 
 // Sets default values for this component's properties
 USaveManager::USaveManager()
@@ -66,8 +67,13 @@ void USaveManager::StartNewGame()
 			ItemDynamicData.ItemStaticData = *pItemStaticData;
 			ItemDynamicData.StacksAmount = Amount;
 
-			JrpgGameInstance->AddFItemDynamicDataToInventory(ItemDynamicData);
+			JrpgGameInstance->AddItemDynamicDataToInventory(ItemDynamicData);
 		}
+
+		JrpgGameInstance->ClearInteractedObjects();
+		JrpgGameInstance->ClearBattledEnemies();
+
+		//UGameplayStatics::OpenLevel();
 	}
 }
 

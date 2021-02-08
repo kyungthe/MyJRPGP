@@ -18,7 +18,7 @@ class MYJRPGP_API UJRPGGameInstance : public UGameInstance
 public:
 	void ClearCharactersCollection();
 	int32 GetCharactersCollectionLength() const;
-	void AddCharacterInformation(struct FCharacterInformation&);
+	void AddCharacterInformation(FCharacterInformation& CharacterInformation);
 
 	void ClearCurrentParty();
 	void ClearInventory();
@@ -27,7 +27,7 @@ public:
 
 	void SetGold(int32 InGold);
 
-	void AddItemDynamicDataToInventory(class FItemDynamicData& ItemDynamicData);
+	void AddItemDynamicDataToInventory(FItemDynamicData& ItemDynamicData);
 
 	void ClearInteractedObjects();
 
