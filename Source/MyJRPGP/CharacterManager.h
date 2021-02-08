@@ -33,6 +33,4 @@ public:
 	class UJRPGGameInstance* JrpgGameInstance;
 
 	int32 MaxCharactersAmountInCollection;
-
-	class UDataTable* ItemDataTable;
 };

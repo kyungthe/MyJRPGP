@@ -7,19 +7,13 @@
 #include "BattleManager.h"
 
 // Sets default values for this component's properties
-UCharacterManager::UCharacterManager() : ItemDataTable(nullptr)
+UCharacterManager::UCharacterManager()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
 	MaxCharactersAmountInCollection = 15;
-
-	ConstructorHelpers::FObjectFinder<UDataTable> FindDataTable(TEXT("/Game/MyJRPG/DataTable/ItemDataTable"));
-	if (FindDataTable.Succeeded())
-	{
-		ItemDataTable = FindDataTable.Object;
-	}
 }
 
 
@@ -39,6 +33,7 @@ void UCharacterManager::AddNewCharacterToCollection(FCharacterInformation& Chara
 		if (CharacterCollectionLength < MaxCharactersAmountInCollection)
 		{
 			TMap<EItemType, FItemStaticData>& CharacterEquipment = CharacterInformation.CharacterEquipment;
+			UDataTable* ItemDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/MyJRPG/DataTable/ItemDataTable"), nullptr, LOAD_None, nullptr);
 			for (auto& Pair : CharacterEquipment)
 			{
 				FItemStaticData& CharacterItemStaticData = Pair.Value;
