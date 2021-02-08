@@ -45,3 +45,13 @@ void UJRPGGameInstance::AddItemDynamicDataToInventory(FItemDynamicData& ItemDyna
 {
 	Inventory.Add(ItemDynamicData);
 }
+
+void UJRPGGameInstance::ClearInteractedObjects()
+{
+	InteractedObjects.Reset();
+}
+
+void UJRPGGameInstance::ClearBattledEnemies()
+{
+	BattledEnemies.Reset();
+}

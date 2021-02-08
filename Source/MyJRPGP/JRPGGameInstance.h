@@ -29,6 +29,10 @@ public:
 
 	void AddItemDynamicDataToInventory(class FItemDynamicData& ItemDynamicData);
 
+	void ClearInteractedObjects();
+
+	void ClearBattledEnemies();
+
 public:
 	UPROPERTY()
 		TMap<FName, FCharacterInformation> CharactersCollection;
@@ -42,4 +46,10 @@ public:
 	float TimePlayed;
 
 	int32 Gold;
+
+	UPROPERTY()
+		TMap<FName, bool> InteractedObjects;
+
+	UPROPERTY()
+		TMap<FName, bool> BattledEnemies;
 };
