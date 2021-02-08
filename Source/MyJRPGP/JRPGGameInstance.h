@@ -27,6 +27,8 @@ public:
 
 	void SetGold(int32 InGold);
 
+	void AddItemDynamicDataToInventory(class FItemDynamicData& ItemDynamicData);
+
 public:
 	UPROPERTY()
 		TMap<FName, FCharacterInformation> CharactersCollection;

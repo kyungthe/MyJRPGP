@@ -48,6 +48,26 @@ void USaveManager::StartNewGame()
 		}
 
 		JrpgGameInstance->SetGold(50);
+
+		TMap<FName, int32> DefaultItems;
+		DefaultItems.Add("Potion_HP_01",		5);
+		DefaultItems.Add("Potion_MP_01",		3);
+		DefaultItems.Add("Potion_Revive_01",	4);
+		DefaultItems.Add("Potion_HP_02",		1);
+		DefaultItems.Add("Dagger_01",			1);
+
+		for (auto& Pair : DefaultItems)
+		{
+			FName ItemName = Pair.Key;
+			int32 Amount = Pair.Value;
+			UDataTable* ItemDataTable = LoadObject<UDataTable>(nullptr, TEXT("/Game/MyJRPG/DataTable/ItemDataTable"), nullptr, LOAD_None, nullptr);
+			FItemDynamicData ItemDynamicData;
+			FItemStaticData* pItemStaticData = ItemDataTable->FindRow<FItemStaticData>(ItemName, "");
+			ItemDynamicData.ItemStaticData = *pItemStaticData;
+			ItemDynamicData.StacksAmount = Amount;
+
+			JrpgGameInstance->AddFItemDynamicDataToInventory(ItemDynamicData);
+		}
 	}
 }
 

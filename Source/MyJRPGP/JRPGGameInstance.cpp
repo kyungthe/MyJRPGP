@@ -40,3 +40,8 @@ void UJRPGGameInstance::SetGold(int32 InGold)
 {
 	Gold = InGold;
 }
+
+void UJRPGGameInstance::AddItemDynamicDataToInventory(FItemDynamicData& ItemDynamicData)
+{
+	Inventory.Add(ItemDynamicData);
+}
