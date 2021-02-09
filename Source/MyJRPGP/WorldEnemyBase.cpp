@@ -14,14 +14,16 @@ AWorldEnemyBase::AWorldEnemyBase()
 	ActivationRange = CreateDefaultSubobject<USphereComponent>("ActivationRange");
 	if (ActivationRange)
 	{
-		ActivationRange->SetSphereRadius(500.0f);
+		ActivationRadius = 500;
+		ActivationRange->SetSphereRadius(ActivationRadius);
 		ActivationRange->SetupAttachment(RootComponent);
 	}
 
 	EncounterRange = CreateDefaultSubobject<USphereComponent>("EncounterRange");
 	if (EncounterRange)
 	{
-		EncounterRange->SetSphereRadius(0.0f);
+		EncounterRadius = 100;
+		EncounterRange->SetSphereRadius(EncounterRadius);
 		EncounterRange->SetupAttachment(RootComponent);
 	}
 

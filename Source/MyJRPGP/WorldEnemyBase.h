@@ -30,4 +30,8 @@ private:
 	class USphereComponent* ActivationRange;
 
 	class USphereComponent* EncounterRange;
+
+	float ActivationRadius;
+
+	float EncounterRadius;
 };
