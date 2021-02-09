@@ -4,9 +4,10 @@
 #include "WorldEnemyBase.h"
 #include <Components/SphereComponent.h>
 #include <Components/CapsuleComponent.h>
+#include "JRPGGameInstance.h"
 
 // Sets default values
-AWorldEnemyBase::AWorldEnemyBase()
+AWorldEnemyBase::AWorldEnemyBase() : EnemyGlobalID("None")
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -37,6 +38,30 @@ AWorldEnemyBase::AWorldEnemyBase()
 			SkeletalMeshComponent->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 		}
 	}
+}
+
+void AWorldEnemyBase::SetEnemyBattleState(bool State)
+{
+	UJRPGGameInstance* JrpgGameInstance = GetWorld()->GetGameInstance<UJRPGGameInstance>();
+	if (JrpgGameInstance)
+	{
+		JrpgGameInstance->AddBattledEnemyState(EnemyGlobalID, State);
+	}
+}
+
+TOptional<bool> AWorldEnemyBase::GetEnemyBattleState()
+{
+	UJRPGGameInstance* JrpgGameInstance = GetWorld()->GetGameInstance<UJRPGGameInstance>();
+	if (JrpgGameInstance)
+	{
+		TOptional<bool> Result = JrpgGameInstance->GetBattledEnemyState(EnemyGlobalID);
+		if (Result)
+		{
+			return Result;
+		}
+	}
+
+	return { };
 }
 
 // Called when the game starts or when spawned

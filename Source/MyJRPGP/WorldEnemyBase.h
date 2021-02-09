@@ -15,6 +15,9 @@ public:
 	// Sets default values for this character's properties
 	AWorldEnemyBase();
 
+	void SetEnemyBattleState(bool State);
+	TOptional<bool> GetEnemyBattleState();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -34,4 +37,6 @@ private:
 	float ActivationRadius;
 
 	float EncounterRadius;
+
+	FName EnemyGlobalID;
 };

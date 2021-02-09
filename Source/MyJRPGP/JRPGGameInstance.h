@@ -33,6 +33,9 @@ public:
 
 	void ClearBattledEnemies();
 
+	void AddBattledEnemyState(FName EnemyName, bool State);
+	TOptional<bool> GetBattledEnemyState(FName EnemyName);
+
 public:
 	UPROPERTY()
 		TMap<FName, FCharacterInformation> CharactersCollection;

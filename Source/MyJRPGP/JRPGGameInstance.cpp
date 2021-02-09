@@ -55,3 +55,18 @@ void UJRPGGameInstance::ClearBattledEnemies()
 {
 	BattledEnemies.Reset();
 }
+
+void UJRPGGameInstance::AddBattledEnemyState(FName EnemyName, bool State)
+{
+	BattledEnemies.Add(EnemyName, State);
+}
+
+TOptional<bool> UJRPGGameInstance::GetBattledEnemyState(FName EnemyName)
+{
+	if (BattledEnemies.Contains(EnemyName))
+	{
+		return BattledEnemies[EnemyName];
+	}
+
+	return { };
+}
