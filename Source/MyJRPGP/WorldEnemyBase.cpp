@@ -2,6 +2,8 @@
 
 
 #include "WorldEnemyBase.h"
+#include <Components/SphereComponent.h>
+#include <Components/CapsuleComponent.h>
 
 // Sets default values
 AWorldEnemyBase::AWorldEnemyBase()
@@ -9,6 +11,30 @@ AWorldEnemyBase::AWorldEnemyBase()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	ActivationRange = CreateDefaultSubobject<USphereComponent>("ActivationRange");
+	if (ActivationRange)
+	{
+		ActivationRange->SetSphereRadius(500.0f);
+		ActivationRange->SetupAttachment(RootComponent);
+	}
+
+	EncounterRange = CreateDefaultSubobject<USphereComponent>("EncounterRange");
+	if (EncounterRange)
+	{
+		EncounterRange->SetSphereRadius(0.0f);
+		EncounterRange->SetupAttachment(RootComponent);
+	}
+
+	USkeletalMeshComponent* SkeletalMeshComponent = GetMesh();
+	if (SkeletalMeshComponent)
+	{
+		ConstructorHelpers::FObjectFinder<USkeletalMesh> SkeletalMesh(TEXT("/Game/AnimStarterPack/UE4_Mannequin/Mesh/SK_Mannequin"));
+		if (SkeletalMesh.Succeeded())
+		{
+			SkeletalMeshComponent->SetSkeletalMesh(SkeletalMesh.Object);
+			SkeletalMeshComponent->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
+		}
+	}
 }
 
 // Called when the game starts or when spawned
