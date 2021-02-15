@@ -61,24 +61,14 @@ void UJRPGGameInstance::AddBattledEnemyState(FName EnemyName, bool State)
 	BattledEnemies.Add(EnemyName, State);
 }
 
-TOptional<bool> UJRPGGameInstance::GetBattledEnemyState(FName EnemyName)
+const bool* UJRPGGameInstance::GetBattledEnemyState(FName EnemyName) const
 {
-	if (BattledEnemies.Contains(EnemyName))
-	{
-		return BattledEnemies[EnemyName];
-	}
-
-	return { };
+	return BattledEnemies.Find(EnemyName);
 }
 
-TOptional<FTransform> UJRPGGameInstance::GetWorldEnemyTransformBeforeBattle(FName EnemyName)
+const FTransform* UJRPGGameInstance::GetWorldEnemyTransformBeforeBattle(FName EnemyName) const
 {
-	if (WorldEnemiesTransformsBeforeBattle.Contains(EnemyName))
-	{
-		return WorldEnemiesTransformsBeforeBattle[EnemyName];
-	}
-
-	return { };
+	return WorldEnemiesTransformsBeforeBattle.Find(EnemyName);
 }
 
 bool UJRPGGameInstance::IsSpawningAfterBattle() const

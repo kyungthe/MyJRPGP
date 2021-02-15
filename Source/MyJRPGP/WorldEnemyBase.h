@@ -16,7 +16,7 @@ public:
 	AWorldEnemyBase();
 
 	void SetEnemyBattleState(bool State);
-	TOptional<bool> GetEnemyBattleState();
+	const bool* GetEnemyBattleState() const;
 
 	void OnEnemyBattleStateLoaded(bool BattleState);
 

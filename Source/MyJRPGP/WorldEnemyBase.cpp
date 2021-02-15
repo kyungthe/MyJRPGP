@@ -49,19 +49,15 @@ void AWorldEnemyBase::SetEnemyBattleState(bool State)
 	}
 }
 
-TOptional<bool> AWorldEnemyBase::GetEnemyBattleState()
+const bool* AWorldEnemyBase::GetEnemyBattleState() const
 {
 	UJRPGGameInstance* JrpgGameInstance = GetWorld()->GetGameInstance<UJRPGGameInstance>();
 	if (JrpgGameInstance)
 	{
-		TOptional<bool> Result = JrpgGameInstance->GetBattledEnemyState(EnemyGlobalID);
-		if (Result)
-		{
-			return Result;
-		}
+		return JrpgGameInstance->GetBattledEnemyState(EnemyGlobalID);
 	}
 
-	return { };
+	return nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -72,7 +68,7 @@ void AWorldEnemyBase::BeginPlay()
 	UJRPGGameInstance* JrpgGameInstance = GetWorld()->GetGameInstance<UJRPGGameInstance>();
 	if (JrpgGameInstance)
 	{
-		TOptional<FTransform> Transform = JrpgGameInstance->GetWorldEnemyTransformBeforeBattle(EnemyGlobalID);
+		const FTransform* Transform = JrpgGameInstance->GetWorldEnemyTransformBeforeBattle(EnemyGlobalID);
 		if (Transform)
 		{
 			bool IsSpawningAfterBattle = JrpgGameInstance->IsSpawningAfterBattle();
@@ -82,7 +78,7 @@ void AWorldEnemyBase::BeginPlay()
 			}
 		}
 
-		TOptional<bool> BattleState = GetEnemyBattleState();
+		const bool* BattleState = GetEnemyBattleState();
 		if (BattleState)
 		{
 			OnEnemyBattleStateLoaded(*BattleState);

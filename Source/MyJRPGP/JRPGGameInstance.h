@@ -34,9 +34,9 @@ public:
 	void ClearBattledEnemies();
 
 	void AddBattledEnemyState(FName EnemyName, bool State);
-	TOptional<bool> GetBattledEnemyState(FName EnemyName);
+	const bool* GetBattledEnemyState(FName EnemyName) const;
 
-	TOptional<FTransform> GetWorldEnemyTransformBeforeBattle(FName EnemyName);
+	const FTransform* GetWorldEnemyTransformBeforeBattle(FName EnemyName) const;
 
 	bool IsSpawningAfterBattle() const;
 
