@@ -69,6 +69,25 @@ void AWorldEnemyBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UJRPGGameInstance* JrpgGameInstance = GetWorld()->GetGameInstance<UJRPGGameInstance>();
+	if (JrpgGameInstance)
+	{
+		TOptional<FTransform> Transform = JrpgGameInstance->GetWorldEnemyTransformBeforeBattle(EnemyGlobalID);
+		if (Transform)
+		{
+			bool IsSpawningAfterBattle = JrpgGameInstance->IsSpawningAfterBattle();
+			if (IsSpawningAfterBattle)
+			{
+				SetActorTransform(*Transform);
+			}
+		}
+
+		TOptional<bool> BattleState = GetEnemyBattleState();
+		if (BattleState)
+		{
+			OnEnemyBattleStateLoaded(*BattleState);
+		}
+	}
 }
 
 // Called every frame
@@ -85,3 +104,14 @@ void AWorldEnemyBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
+void AWorldEnemyBase::OnEnemyBattleStateLoaded(bool BattleState)
+{
+	if (BattleState)
+	{
+		Destroy();
+	}
+	else
+	{
+		EncounterRange->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+}

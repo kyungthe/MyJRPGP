@@ -36,6 +36,10 @@ public:
 	void AddBattledEnemyState(FName EnemyName, bool State);
 	TOptional<bool> GetBattledEnemyState(FName EnemyName);
 
+	TOptional<FTransform> GetWorldEnemyTransformBeforeBattle(FName EnemyName);
+
+	bool IsSpawningAfterBattle() const;
+
 public:
 	UPROPERTY()
 		TMap<FName, FCharacterInformation> CharactersCollection;
@@ -55,4 +59,10 @@ public:
 
 	UPROPERTY()
 		TMap<FName, bool> BattledEnemies;
+
+	UPROPERTY()
+		TMap<FName, FTransform> WorldEnemiesTransformsBeforeBattle;
+
+	UPROPERTY()
+		bool SpawningAfterBattle;
 };

@@ -70,3 +70,18 @@ TOptional<bool> UJRPGGameInstance::GetBattledEnemyState(FName EnemyName)
 
 	return { };
 }
+
+TOptional<FTransform> UJRPGGameInstance::GetWorldEnemyTransformBeforeBattle(FName EnemyName)
+{
+	if (WorldEnemiesTransformsBeforeBattle.Contains(EnemyName))
+	{
+		return WorldEnemiesTransformsBeforeBattle[EnemyName];
+	}
+
+	return { };
+}
+
+bool UJRPGGameInstance::IsSpawningAfterBattle() const
+{
+	return SpawningAfterBattle;
+}
