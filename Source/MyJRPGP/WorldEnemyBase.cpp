@@ -15,7 +15,7 @@ AWorldEnemyBase::AWorldEnemyBase() : EnemyGlobalID("None")
 	ActivationRange = CreateDefaultSubobject<USphereComponent>("ActivationRange");
 	if (ActivationRange)
 	{
-		ActivationRadius = 500;
+		ActivationRadius = 500.0f;
 		ActivationRange->SetSphereRadius(ActivationRadius);
 		ActivationRange->SetupAttachment(RootComponent);
 	}
@@ -23,7 +23,7 @@ AWorldEnemyBase::AWorldEnemyBase() : EnemyGlobalID("None")
 	EncounterRange = CreateDefaultSubobject<USphereComponent>("EncounterRange");
 	if (EncounterRange)
 	{
-		EncounterRadius = 100;
+		EncounterRadius = 100.0f;
 		EncounterRange->SetSphereRadius(EncounterRadius);
 		EncounterRange->SetupAttachment(RootComponent);
 	}
