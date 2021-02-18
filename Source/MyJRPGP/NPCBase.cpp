@@ -56,6 +56,16 @@ ANPCBase::ANPCBase()
 	}
 }
 
+void ANPCBase::OnInteractionEnabled()
+{
+	WidgetComponent->SetHiddenInGame(false);
+}
+
+void ANPCBase::OnInteractionDisabled()
+{
+	WidgetComponent->SetHiddenInGame(true);
+}
+
 // Called when the game starts or when spawned
 void ANPCBase::BeginPlay()
 {

@@ -15,6 +15,11 @@ public:
 	// Sets default values for this character's properties
 	ANPCBase();
 
+public:
+
+	void OnInteractionEnabled();
+	void OnInteractionDisabled();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
