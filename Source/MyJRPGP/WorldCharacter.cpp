@@ -2,6 +2,7 @@
 
 
 #include "WorldCharacter.h"
+#include "Interaction.h"
 #include <Camera/CameraComponent.h>
 #include <GameFramework/SpringArmComponent.h>
 
@@ -35,6 +36,8 @@ AWorldCharacter::AWorldCharacter()
 			SkeletalMeshComponent->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 		}
 	}
+
+	ActorToInteract = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -44,11 +47,56 @@ void AWorldCharacter::BeginPlay()
 	
 }
 
+AActor* AWorldCharacter::GetNearestActorinInteractionRange()
+{
+	if (ActorsInInteractionRange.Num() <= 0)
+	{
+		return nullptr;
+	}
+
+	float DistanceToNearestActor = 5000.0f;
+	AActor* NearestActor = nullptr;
+
+	for (AActor* Actor : ActorsInInteractionRange)
+	{
+		float Distance = GetDistanceTo(Actor);
+		if (Distance < DistanceToNearestActor)
+		{
+			DistanceToNearestActor = Distance;
+			NearestActor = Actor;
+		}
+	}
+
+	return NearestActor;
+}
+
 // Called every frame
 void AWorldCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	AActor* NearestActorinInteractionRange = GetNearestActorinInteractionRange();
+	if (ActorToInteract != NearestActorinInteractionRange)
+	{
+		if (ActorToInteract)
+		{
+			IInteraction* Interaction = Cast<IInteraction>(ActorToInteract);
+			if (Interaction)
+			{
+				Interaction->OnInteractionDisabled();
+			}
+		}
+
+		if (NearestActorinInteractionRange)
+		{
+			ActorToInteract = NearestActorinInteractionRange;
+			IInteraction* Interaction = Cast<IInteraction>(ActorToInteract);
+			if (Interaction)
+			{
+				Interaction->OnInteractionEnabled();
+			}
+		}
+	}
 }
 
 // Called to bind functionality to input

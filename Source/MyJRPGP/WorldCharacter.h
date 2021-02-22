@@ -19,6 +19,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	AActor* GetNearestActorinInteractionRange();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -32,4 +34,10 @@ private:
 
 	UPROPERTY()
 	class UCameraComponent* CameraComponent;
+
+	UPROPERTY()
+	TArray<AActor*> ActorsInInteractionRange;
+
+	UPROPERTY()
+	AActor* ActorToInteract;
 };

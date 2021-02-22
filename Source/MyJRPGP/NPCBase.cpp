@@ -56,6 +56,16 @@ ANPCBase::ANPCBase()
 	}
 }
 
+void ANPCBase::OnObjectInteractionStateLoaded(bool InteractionState)
+{
+
+}
+
+void ANPCBase::OnEnemyBattleStateLoaded(bool BattleState)
+{
+
+}
+
 void ANPCBase::OnInteractionEnabled()
 {
 	WidgetComponent->SetHiddenInGame(false);
@@ -64,6 +74,11 @@ void ANPCBase::OnInteractionEnabled()
 void ANPCBase::OnInteractionDisabled()
 {
 	WidgetComponent->SetHiddenInGame(true);
+}
+
+void ANPCBase::OnInteractionRequested(class WorldCharacter* WorldCharacter)
+{
+
 }
 
 // Called when the game starts or when spawned
