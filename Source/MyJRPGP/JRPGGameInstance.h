@@ -40,6 +40,14 @@ public:
 
 	bool IsSpawningAfterBattle() const;
 
+	void SetEncounteredEnemies(const TMap<int, FName>& InEncounteredEnemies);
+
+	void SetWorldTransformBeforeBattle(const FTransform& InWorldTransformBeforeBattle);
+
+	void SetCameraWorldRotationBeforeBattle(const FRotator& InCameraWorldRotationBeforeBattle);
+
+	void SetWorldEnemiesTransformsBeforeBattle(const TMap<FName, FTransform>& InWorldEnemiesTransformsBeforeBattle);
+
 public:
 	UPROPERTY()
 		TMap<FName, FCharacterInformation> CharactersCollection;
@@ -61,8 +69,17 @@ public:
 		TMap<FName, bool> BattledEnemies;
 
 	UPROPERTY()
+		FTransform WorldTransformBeforeBattle;
+
+	UPROPERTY()
 		TMap<FName, FTransform> WorldEnemiesTransformsBeforeBattle;
 
 	UPROPERTY()
 		bool SpawningAfterBattle;
+
+	UPROPERTY()
+		TMap<int, FName> EncounteredEnemies;
+
+	UPROPERTY()
+		FRotator CameraWorldRotationBeforeBattle;
 };

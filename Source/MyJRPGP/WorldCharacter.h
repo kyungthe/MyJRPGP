@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "WorldCharacter.generated.h"
 
+class AWorldController;
+
 UCLASS()
 class MYJRPGP_API AWorldCharacter : public ACharacter
 {
@@ -14,6 +16,8 @@ class MYJRPGP_API AWorldCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AWorldCharacter();
+
+	AWorldController* GetWorldController();
 
 protected:
 	// Called when the game starts or when spawned
@@ -40,4 +44,7 @@ private:
 
 	UPROPERTY()
 	AActor* ActorToInteract;
+
+	UPROPERTY()
+	AWorldController* WorldController;
 };

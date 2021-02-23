@@ -75,3 +75,23 @@ bool UJRPGGameInstance::IsSpawningAfterBattle() const
 {
 	return SpawningAfterBattle;
 }
+
+void UJRPGGameInstance::SetEncounteredEnemies(const TMap<int, FName>& InEncounteredEnemies)
+{
+	EncounteredEnemies = InEncounteredEnemies;
+}
+
+void UJRPGGameInstance::SetWorldTransformBeforeBattle(const FTransform& InWorldTransformBeforeBattle)
+{
+	WorldTransformBeforeBattle = InWorldTransformBeforeBattle;
+}
+
+void UJRPGGameInstance::SetCameraWorldRotationBeforeBattle(const FRotator& InCameraWorldRotationBeforeBattle)
+{
+	CameraWorldRotationBeforeBattle = InCameraWorldRotationBeforeBattle;
+}
+
+void UJRPGGameInstance::SetWorldEnemiesTransformsBeforeBattle(const TMap<FName, FTransform>& InWorldEnemiesTransformsBeforeBattle)
+{
+	WorldEnemiesTransformsBeforeBattle = InWorldEnemiesTransformsBeforeBattle;
+}

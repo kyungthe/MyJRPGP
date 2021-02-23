@@ -38,6 +38,12 @@ AWorldCharacter::AWorldCharacter()
 	}
 
 	ActorToInteract = nullptr;
+	WorldController = nullptr;
+}
+
+AWorldController* AWorldCharacter::GetWorldController()
+{
+	return WorldController;
 }
 
 // Called when the game starts or when spawned

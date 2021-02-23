@@ -2,4 +2,9 @@
 
 
 #include "WorldController.h"
+#include "BattleManager.h"
 
+UBattleManager* AWorldController::GetBattleManager()
+{
+	return BattleManager;
+}

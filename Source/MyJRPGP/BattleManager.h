@@ -22,6 +22,12 @@ public:
 	void SetPlayerCharacterCurrentMP(FName CharacterName, float MP);
 	float GetPlayerCharacterCurrentMP(FName CharacterName) const;
 
+	void EncounterEnemies(FName EncounterName, FName BattleMapName);
+
+	void OpenMapBattleMap(FName BattleMapName, TMap<int32, FName>& EncounteredEnemies);
+
+	TMap<FName, FTransform> GetWorldEnemiesTransforms();
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

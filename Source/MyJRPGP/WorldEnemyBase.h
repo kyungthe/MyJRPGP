@@ -20,6 +20,14 @@ public:
 
 	void OnEnemyBattleStateLoaded(bool BattleState);
 
+	void OnActivationRangeBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor
+		, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	void OnEncounterRangeBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor
+		, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	const FName GetEnemyGlobalID() const;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -43,4 +51,11 @@ private:
 	float EncounterRadius;
 
 	FName EnemyGlobalID;
+
+	UPROPERTY()
+	class AWorldCharacter* PlayerCharacter;
+
+	TArray<FName> PossibleEncounters;
+
+	TArray<FName> PossibleBattleMaps;
 };

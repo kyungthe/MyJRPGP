@@ -4,6 +4,9 @@
 #include "WorldEnemyBase.h"
 #include <Components/SphereComponent.h>
 #include <Components/CapsuleComponent.h>
+#include "WorldCharacter.h"
+#include "WorldController.h"
+#include "BattleManager.h"
 #include "JRPGGameInstance.h"
 
 // Sets default values
@@ -18,6 +21,10 @@ AWorldEnemyBase::AWorldEnemyBase() : EnemyGlobalID("None")
 		ActivationRadius = 500.0f;
 		ActivationRange->SetSphereRadius(ActivationRadius);
 		ActivationRange->SetupAttachment(RootComponent);
+
+		FScriptDelegate ScriptDelegate;
+		ScriptDelegate.BindUFunction(this, "OnActivationRangeBeginOverlap");
+		ActivationRange->OnComponentBeginOverlap.Add(ScriptDelegate);
 	}
 
 	EncounterRange = CreateDefaultSubobject<USphereComponent>("EncounterRange");
@@ -110,4 +117,43 @@ void AWorldEnemyBase::OnEnemyBattleStateLoaded(bool BattleState)
 	{
 		EncounterRange->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	}
+}
+
+void AWorldEnemyBase::OnActivationRangeBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	AWorldCharacter* WorldCharacter = Cast<AWorldCharacter>(OtherActor);
+	if (WorldCharacter)
+	{
+		PlayerCharacter = WorldCharacter;
+	}
+}
+
+void AWorldEnemyBase::OnEncounterRangeBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	AWorldCharacter* WorldCharacter = Cast<AWorldCharacter>(OtherActor);
+	if (WorldCharacter)
+	{
+		SetEnemyBattleState(true);
+
+		int Index = FMath::RandRange(0, PossibleEncounters.Num() - 1);
+		FName EncounterName = PossibleEncounters[Index];
+
+		Index = FMath::RandRange(0, PossibleBattleMaps.Num() - 1);
+		FName BattleMapName = PossibleBattleMaps[Index];
+
+		AWorldController* WorldController = WorldCharacter->GetWorldController();
+		if (!WorldController)
+			return;
+
+		UBattleManager* BattleManager = WorldController->GetBattleManager();
+		if (!BattleManager)
+			return;
+
+		BattleManager->EncounterEnemies(EncounterName, BattleMapName);
+	}
+}
+
+const FName AWorldEnemyBase::GetEnemyGlobalID() const
+{
+	return EnemyGlobalID;
 }
