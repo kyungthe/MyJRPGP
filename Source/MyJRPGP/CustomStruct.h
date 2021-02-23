@@ -128,33 +128,33 @@ struct FEncounter
 	TMap<int, FName> Enemies;
 };
 
-USTRUCT()
-struct FEnemyInformation
+USTRUCT(BlueprintType)
+struct FEnemyInformation : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName EnemyHardcodedName;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FText EnemyDisplayName;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Level;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int ExperienceReward;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int GoldReward;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class ABattleCharacterBase* CharacterActorClass;
 
-	UPROPERTY()
-	ECharacterStatType EnemyStats;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<ECharacterStatType, float> EnemyStats;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<float, FName> PossibleLoot;
 };
 
