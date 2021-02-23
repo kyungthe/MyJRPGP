@@ -119,12 +119,12 @@ struct FCharacterInformation : public FTableRowBase
 	TMap<int, FNameArray> ActionsPerLevel;
 };
 
-USTRUCT()
-struct FEncounter
+USTRUCT(BlueprintType)
+struct FEncounter : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<int, FName> Enemies;
 };
 
